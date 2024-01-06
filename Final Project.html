@@ -1,0 +1,897 @@
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+     <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script>
+     <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link>
+</head>
+<body>
+
+
+<script>
+
+function lightSwitch(id){
+     var light = document.getElementById(id);
+     if(light.getAttribute('on')!='TRUE')
+        light.setAttribute('on','TRUE');
+     else
+         light.setAttribute('on','FALSE');
+ }
+ function headlight()
+  {
+       var h = document.getElementById("head");
+      if(h.getAttribute('headlight')=='true')
+        h.setAttribute('headlight', 'false');
+      else
+          h.setAttribute('headlight', 'true');
+  }
+
+</script>
+
+
+<X3D width=’600px’ height=’300px’>
+
+<Scene>
+ <background  skyColor="0.8 0.8 0.8"></background>
+<group>
+ <Viewpoint id="Inside" position="0.00000 0.00000 20.5770" orientation="0.00000 0.00000 0.00000 0.00000" description="camera"></Viewpoint>
+<viewpoint id="Outside" position='0 1.074 -40.29' orientation='-0.0 -2 -0.0 3.14' description='camera'></viewpoint>
+<Viewpoint id="Upstairs" position="0.00000 18.27002 13.48816" orientation="-0.99904 0.03372 -0.02789 0.61557" description="camera"></Viewpoint
+<group/>
+
+<SpotLight id='spot' on ="TRUE" beamWidth='200.0' color='1 0.9 0.6' cutOffAngle='6.28' location='0 0 0' radius='250' intensity='0.36'></SpotLight>
+        <Inline nameSpaceName="light" mapDEFToID="true" ></Inline>
+
+                
+                    <!--Floors-->
+				
+<!--First Floor-->
+ <Transform translation="0 -5.35 -12">
+ <Shape DEF='floor'>
+<Appearance>
+<ImageTexture url="https://i.imgur.com/ogaX58x.jpg"><ImageTexture/>
+</Appearance>
+<box size='16.5 0.7 -10' solid='true'/>
+</Shape>
+</Transform>
+
+
+<!--Second Floor-->
+<Transform translation='0 3.4 -12'>
+<Shape USE='floor'></Shape>
+</Transform>
+
+
+
+
+                    <!--walls on z axis-->
+				  
+<!--left wall-->
+<Transform translation="-8 -1 -12">
+ <Shape DEF='zwalls'>
+<Appearance>
+ <Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5 8 7' solid='true'/>
+</Shape>
+</Transform>
+
+<!--right wall-->
+<Transform translation='8 -1 -12'>
+<Shape USE='zwalls'></Shape>
+</Transform>
+
+
+
+                    <!--backwall downstairs--> 
+				 
+  <!--each side of windows-->
+<Transform translation="-7.37 -1 -15.39">
+<Shape DEF='Awall'>
+<Appearance>
+ <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='1 8 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation='7.37 -1 -15.39'>
+<Shape USE='Awall'></Shape>
+</Transform>
+
+<Transform translation='4.07 -1 -15.39'>
+<Shape USE='Awall'></Shape>
+</Transform>
+
+<Transform translation='-4.07 -1 -15.39'>
+<Shape USE='Awall'></Shape>
+</Transform>
+
+
+<!--slanted entry-->
+<Transform rotation='0 1 0 0.783' translation='-2.72 -1 -16.25'/>
+<Shape>
+<Appearance>
+ <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='2.3 8 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform rotation='0 1 0 -0.783' translation='2.75 -1 -16.25'/>
+<Shape>
+<Appearance>
+ <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='2.3 8 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+
+<!--top doorway backwall-->
+<Transform translation="0 2.52 -17">
+<Shape>
+<Appearance>
+ <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='4 1.07 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+
+<!--wall around windows-->
+<Transform translation="-5.8 -3.75 -15.39">
+<Shape DEF='Bwall'>
+<Appearance>
+ <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='2.5 2.5 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation='5.8 -3.75 -15.39' >
+<Shape USE='Bwall'></Shape>
+</Transform>
+
+<Transform translation='5.8 1.75 -15.39' >
+<Shape USE='Bwall'></Shape>
+</Transform>
+
+<Transform translation='-5.8 1.75 -15.39' >
+<Shape USE='Bwall'></Shape>
+</Transform>
+
+
+
+<!--window Grilles backwall-->
+<Transform translation="-5.75 -0.95 -15.39">
+ <Shape DEF='heightwindow'>
+<Appearance>
+ <Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<cylinder radius='0.1' height='4' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+<Transform translation="5.75 -0.95 -15.39">
+<Shape USE='heightwindow'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-5.75 -0.49 -15.39"/>
+ <Shape DEF='widthwindow'>
+<Appearance>
+ <Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<cylinder radius='0.1' height='2.5' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+<Transform rotation='0 0 1 1.555' translation="-5.75 -1.47 -15.39"/>
+<Shape USE='widthwindow'></Shape>
+</Transform>
+<Transform rotation='0 0 1 1.555' translation="5.75 -0.49 -15.39"/>
+<Shape USE='widthwindow'></Shape>
+</Transform>
+<Transform rotation='0 0 1 1.555' translation="5.75 -1.47 -15.39"/>
+<Shape USE='widthwindow'></Shape>
+</Transform>
+
+
+
+
+
+                    <!--Ladder-->
+
+<!--Ladder body-->
+<Transform translation="-6 -1 -7"/>
+ <Shape DEF='ladderheight'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<box size='0.3 10.3 0.3' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation="-3.5 -1 -7"/>
+<Shape USE='ladderheight'></Shape>
+</Transform>
+
+
+<!--sphere detail-->
+<transform translation="-6 4.4 -7"/>
+ <Shape DEF='balldecor'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<sphere radius='0.3'/>
+</Shape>
+</Transform>
+
+<transform translation="-3.51 4.4 -7"/>
+<Shape USE='balldecor'></Shape>
+</Transform>
+
+
+ <!--Ladder steps-->
+<Transform rotation='0 0 1 1.555' translation="-4.75 -5 -7">
+ <Shape DEF= 'step'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cylinder radius='0.15' height='3.2' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 -4 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 -3 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 -2 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 -1 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 0 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 1 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-4.75 2 -7">
+<Shape USE='step'></Shape>
+</Transform>
+
+
+                    <!--Door-->
+
+<!--side panels-->
+<Transform translation="-1.5 -1.5 -17">
+<Shape DEF='door'>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='0.7 6.95 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+
+<Transform translation='1.5 -1.5 -17'>
+<Shape USE='door'></Shape>
+</Transform>
+
+
+<!--centre panels-->
+<Transform translation="0 1.48 -17">
+<Shape>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='2.4 1 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation="0 -3.53 -17">
+<Shape>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='2.4 2.90 0.25' solid='true'/>
+</Shape>
+</Transform>
+
+<!-- inside knob-->
+<Transform translation="1.5 -2.9 -16.39">
+ <Shape DEF='knob'>
+<Appearance>
+<Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<sphere radius='0.2'/>
+</Shape>
+</Transform>
+
+<!-- outside knob-->
+<Transform translation="-1.5 -2.9 -17.39">
+ <Shape USE='knob'>
+</Transform>
+
+
+                    <!--downstairs Grilles window-->
+						
+<Transform translation="-0.5 -0.95 -17">
+ <Shape DEF='heightGrilles'>
+<Appearance>
+<Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cylinder radius='0.1' height='4' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation="0.5 -0.95 -17">
+ <Shape USE= 'heightGrilles'>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="0 -0.99 -17"/>
+ <Shape DEF='widthGrilles'>
+<Appearance>
+<Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cylinder radius='0.1' height='2.5' bottom='true' solid='true'/>
+</Shape>
+</Transform> 
+
+<Transform rotation='0 0 1 1.555' translation="0 0.30 -17"/>
+ <Shape USE='widthGrilles'>
+</Transform> 
+
+
+                    <!--Roof -->
+					
+<!-- centre triangle -->
+<transform translation ='0 -9.20 -8'>
+<Shape>
+<Appearance>
+<ImageTexture url="https://i.imgur.com/YBiKiEG.jpg"/>
+</Appearance>
+<TriangleSet solid='true'>
+<Coordinate point='-3.95 13 -4 3.95 13 -4  0 18 -4'/>
+</TriangleSet>
+</Shape>
+</Transform> 
+
+<!-- slanted cutout -->
+<Transform rotation='0 0 1 0.661'  translation="2.1 6.29 -13">
+ <Shape>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='0.2 6.29 1.5' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform rotation='0 0 1 -0.661'  translation="-2.1 6.29 -13">
+ <Shape>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='0.2 6.29 1.5' solid='true'/>
+</Shape>
+</Transform>
+
+       	         
+				    <!--windows Grilles upstairs-->
+					
+<Transform translation="-5.75 7.1 -14.18" rotation='1 0 0 0.731'>
+ <Shape DEF='heightwindow'>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<cylinder radius='0.15' height='2.67' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="-5.75 7.2 -14.18"/>
+ <Shape DEF='widthwindow'>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<cylinder radius='0.15' height='2.67' bottom='true' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation="5.75 7.1 -14.18" rotation='1 0 0 0.731'>
+<Shape USE='heightwindow'></Shape>
+</Transform>
+
+<Transform rotation='0 0 1 1.555' translation="5.75 7.2 -14.18"/>
+<Shape USE='widthwindow'></Shape>
+</Transform>
+
+            
+			
+                    <!-- right sideroof-->
+					
+<!-- mainbody - small squares-->
+<Transform translation="8 4 -13.5">
+<Shape DEF='side roof'>
+<Appearance>
+<Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5  2 2' solid='true'/>
+</shape>
+</transform>
+			
+<Transform translation='8 4 -11.5'>
+<Shape USE='side roof'></Shape>
+ </Transform>
+<Transform translation='8 4 -10.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+			
+<Transform translation='8 6 -10.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+<Transform translation='8 6 -11.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+<Transform translation='8 6 -13.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+			
+               <!--slanted side a-->
+<Transform translation="8 6.8 -12" rotation='1 0 0 -0.861'>
+<Shape>
+<Appearance>
+<Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5 3.5 3.5' solid='true'/>
+</shape>
+</transform>
+<Transform translation="8 3.8 -14.5" rotation='1 0 0 -0.861'>
+<Shape>
+<Appearance>
+<Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5 3.5 3.5' solid='true'/>
+</shape>
+</transform>
+			
+			
+
+			
+			
+                    <!-- left sideroof-->
+
+<!-- mainbody - small squares-->
+<Transform translation="-8 4 -13.5">
+<Shape USE='side roof'>
+</transform>
+			
+<Transform translation='-8 4 -11.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+
+<Transform translation='-8 4 -10.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+			
+<Transform translation='-8 6 -10.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+
+<Transform translation='-8 6 -11.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+
+<Transform translation='-8 6 -13.5'>
+<Shape USE='side roof'></Shape>
+</Transform>
+
+
+			
+<!--slanted sides-->
+<Transform translation="-8 6.8 -12" rotation='1 0 0 -0.861'>
+ <Shape>
+<Appearance>
+<Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5 3.5 3.5' solid='true'/>
+</shape>
+</transform>
+<Transform translation="-8 3.8 -14.5" rotation='1 0 0 -0.861'>
+<Shape>
+<Appearance>
+<Material diffuseColor="1 1 0.8"/>
+</Appearance>
+<box size='0.5 3.5 3.5' solid='true'/>
+</shape>
+</transform>
+
+
+
+                <!-- upstairs backwall-->
+
+<!-- slantedmiddle square -->
+<transform translation ='0 6.8 -14.6' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</appearance>
+<box size='9 8 0.5' solid='true'/>
+</shape>
+</transform>
+			
+			
+			
+<!-- roof edges -->
+<transform translation ='-7.57 6.8 -14.6' rotation='1 0 0 0.731'>
+<Shape DEF='edges'>
+<Appearance>
+<ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='1.25 8 0.5' solid='true'/>
+</Shape>
+</Transform>
+
+<Transform translation='7.57 6.8 -14.6' rotation='1 0 0 0.731'>
+<Shape USE='edges'></Shape>
+</Transform>
+			
+
+
+<!-- around windows -->
+<transform translation ='-5.74 8.95 -12.65' rotation='1 0 0 0.731'>
+<Shape DEF='upperwindow'>
+<Appearance> 
+<ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/> <Material diffuseColor="1 0.9 0.6"/>
+</Appearance>
+<box size='2.53 2.2 0.5' solid='true'/>
+</Shape>
+</Transform>
+<Transform translation='5.74 8.95 -12.65' rotation='1 0 0 0.731'>
+<Shape USE='upperwindow'></Shape>
+</Transform>
+
+
+<transform translation ='-5.74 4.97 -16.25' rotation='1 0 0 0.731'>
+<Shape DEF='lowerwindow'>
+<Appearance>
+  <ImageTexture url="https://i.imgur.com/fSNjGiY.jpg"/>
+</Appearance>
+<box size='2.53 3.1 0.5' solid='true'/>
+</Shape>
+</Transform>
+<Transform translation='5.74 4.97 -16.25' rotation='1 0 0 0.731'>
+<Shape USE='lowerwindow'></Shape>
+</Transform>
+
+
+                    <!-- Beam -->
+					
+<Transform rotation='1 0 0 -0.655' translation='0 9.7 -11.95'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/y4iW0vw.jpg'<ImageTexture/>
+</appearance>
+<box size='17.85 2 0.6' solid='true'/>
+</shape>
+</transform>
+
+
+
+                    <!-- outer centre layer roof -->
+					
+<transform translation ='0 6.99 -15' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/xjogf0U.jpg'<ImageTexture/>
+</appearance>
+<box size='7.95 10 0.5' solid='true'/>
+</shape>
+</transform>
+
+
+			
+                    <!-- Left layer roof -->
+<!-- Top -->
+<transform translation ='-6.4 9.8 -12.45' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/38BpWGn.jpg'<ImageTexture/>
+</appearance>
+<box size='5 2.5 0.5' solid='true'/>
+</shape>
+</transform>
+			
+<!-- Bottom -->
+
+<transform translation ='-6.4 4.75 -16.99' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/GfKzl59.jpg'<ImageTexture/>
+</appearance>
+<box size='5 3.99 0.5' solid='true'/>
+</shape>
+</transform>
+
+<!-- sides -->
+<transform translation ='-8.38 7.4 -14.63' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/zrjAbVS.jpg'<ImageTexture/>
+</appearance>
+<box size='1 4.5 0.5' solid='true'/>
+</shape>
+</transform>
+			
+			
+			
+                    <!-- Right layer roof -->
+					
+<!-- Top -->
+<transform translation ='6.4 9.75 -12.45' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/38BpWGn.jpg'<ImageTexture/>
+</appearance>
+<box size='5 2.5 0.5' solid='true'/>
+</shape>
+</transform>
+			
+<!-- Bottom -->
+<transform translation ='6.4 4.75 -16.99' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/GfKzl59.jpg'<ImageTexture/>
+</appearance>
+<box size='5 3.99 0.5' solid='true'/>
+</shape>
+</transform>
+			
+<!-- sides -->
+<transform translation ='8.38 7.4 -14.63' rotation='1 0 0 0.731'>
+<shape>
+<appearance>
+<ImageTexture url= 'https://i.imgur.com/zrjAbVS.jpg'<ImageTexture/>
+</appearance>
+<box size='1 4.5 0.5' solid='true'/>
+</shape>
+</transform>
+				
+
+			
+			        <!-- cone roof -->
+				  
+<transform translation ='0 11 -11.95'>
+<Shape DEF='conedetail'>
+<Appearance>
+ <ImageTexture url= 'https://i.imgur.com/xjogf0U.jpg'<ImageTexture/>
+</appearance>
+<cone bottomRadius="0.15" height="0.3" solid="false"/>
+</shape>
+</transform>
+
+<Transform translation='0.9 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='1.8 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='2.7 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='3.6 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='4.5 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='5.4 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='6.3 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='7.2 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='8.1 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+
+
+<Transform translation='-0.9 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-1.8 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-2.7 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-3.6 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-4.5 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-5.4 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-6.3 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-7.2 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+<Transform translation='-8.1 11 -11.95'>
+<Shape USE='conedetail'></Shape>
+</Transform>
+	
+			
+			        <!-- FURNITURE -->
+			
+               <!--Table-->
+
+<!-- table top-->
+<Transform translation='3.5 -3 -11.5'>
+<Shape>
+<Appearance> 
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cylinder height="0.2" radius="2.5"
+</Shape>
+</transform>
+
+<!--table base-->
+<Transform translation="3.5 -5 -11.4">
+<Shape>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cone bottomRadius="0.95" height="0.8" solid="false" bottom='false'/>
+</shape>
+</transform>
+
+<transform translation ='3.5 -4.25 -11.4' rotation='0 0 1 -3.14'>
+<Shape>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cone bottomRadius="0.35" height="2.5" solid="true" bottom='true'/>
+</shape>
+</transform>
+
+
+<!--chair-->
+<transform translation ='6 -3.5 -11.95'>
+<Shape DEF='seat'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</appearance>
+<cylinder height="0.2" radius="0.9"
+</Shape>
+</transform>
+
+<Transform translation='1 -3.5 -11.95'>
+<Shape USE='seat'></Shape>
+</Transform>
+
+
+<transform translation ='6 -5.5 -11.95'>
+<Shape DEF='bottombase'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cone bottomRadius="0.575" height="0.4" solid="false" bottom='false'/>
+</shape>
+</transform>
+<Transform translation='1 -5.5 -11.95'>
+<Shape USE='bottombase'></Shape>
+</Transform>
+
+<transform translation ='6 -4.75 -11.95'rotation='0 0 1 -3.14'>
+<Shape DEF='middlebase'>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cone bottomRadius="0.3" height="2.5" solid="true" bottom='true'/>
+</shape>
+</transform>
+
+<transform translation ='1 -4.75 -11.95'rotation='0 0 1 -3.14'>
+<Shape USE='middlebase'></Shape>
+</Transform>
+
+
+                <!-- ceiling light-->
+				
+<!-- lightbulb-->
+<Transform translation="0 2.3 -11.4">
+<Shape>
+<Appearance>
+<Material emissiveColor="1 1 0"/>
+</Appearance>
+<Sphere radius ="0.35"/>
+</shape>
+</transform>
+
+<!-- lampshade -->
+<Transform translation="0 2.5 -11.4">
+<Shape>
+<Appearance>
+ <Material diffuseColor="0.6 0.3 0.1"/>
+</Appearance>
+<cone bottomRadius="0.95" height="0.8" solid="false" bottom='false'/>
+</shape>
+</transform>
+
+                <!--window panes -->
+
+<!-- downstairs window panes -->
+<Transform translation="-5.75 -0.95 -15.39">
+<Shape>
+<Appearance>
+<Material diffuseColor='0.4 0.5 0.8' specularColor='0 1 0' transparency='.5'/>
+</Appearance>
+<box size='2.5 4 0.15' solid='true'/>
+</shape>
+</transform>
+
+<Transform translation="5.75 -0.95 -15.39">
+<Shape>
+<Appearance>
+<Material diffuseColor='0.4 0.5 0.8' specularColor='0 1 0' transparency='.5'/>
+</Appearance>
+<box size='2.5 4 0.15' solid='true'/>
+</shape>
+</transform>
+
+
+<!-- upstairs window panes -->
+<Transform translation="-5.75 7.1 -14.5" rotation='1 0 0 0.731'>
+<Shape>
+<Appearance>
+<Material diffuseColor='0.4 0.5 0.8' specularColor='0 1 0' transparency='.5'/>
+</Appearance>
+<box size='2.67 2.67 0.15' solid='true'/>
+</shape>
+</transform>
+			
+			
+<Transform translation="5.75 7.1 -14.5" rotation='1 0 0 0.731'>
+<Shape>
+<Appearance>
+<Material diffuseColor='0.4 0.5 0.8' specularColor='0 1 0' transparency='.5'/>
+</Appearance>
+<box size='2.67 2.67 0.15' solid='true'/>
+</shape>
+</transform>
+
+
+</Scene>
+</X3D>
+
+	
+<button onclick="document.getElementById('Inside').setAttribute('set_bind','true');">Inside</button>
+<button onclick="document.getElementById('Outside').setAttribute('set_bind','true');">Outside</button>
+<button onclick="document.getElementById('Upstairs').setAttribute('set_bind','true');">Upstairs</button>
+
+<div id="tools" style="width: 800px;">
+<input type="checkbox" checked="true" onclick="lightSwitch('spot')">
+    <label>spot light</label>
+</div>
+
+</body>
+</html>
+
+
+
+
+
